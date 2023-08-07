@@ -1,14 +1,11 @@
-# Settings
-
-variable "account_id" {
-  type        = string
-  description = "AWS account id."
-}
+# Auth
 
 variable "profile" {
   type        = string
   description = "AWS profile."
 }
+
+# Settings
 
 variable "region" {
   type        = string
@@ -29,6 +26,8 @@ variable "enable_aws_cloudwatch_metrics" {
   type        = bool
   description = "Enable AWS Cloudwatch Metrics to collect metrics."
 }
+
+# Optional
 
 # Fluent Bit
 
@@ -71,7 +70,13 @@ variable "fluent_bit_iam_role_name" {
 variable "fluent_bit_values_yaml" {
   type        = string
   default     = null
-  description = "Custom values.yaml passed to helm. This override the default template."
+  description = "values.yaml passed to helm. This override the default values."
+}
+
+variable "fluent_bit_schedule_yaml" {
+  type        = string
+  default     = null
+  description = "schedule.yaml passed to helm. This override the default toleration setup."
 }
 
 variable "fluent_bit_read_from_head" {
@@ -116,6 +121,18 @@ variable "aws_cloudwatch_metrics_iam_role_name" {
   type        = string
   default     = "EKSCloudwatchMetricsRole-"
   description = "Role name or role name prefix."
+}
+
+variable "aws_cloudwatch_metrics_values_yaml" {
+  type        = string
+  default     = null
+  description = "values.yaml passed to helm. This override the default values."
+}
+
+variable "aws_cloudwatch_metrics_schedule_yaml" {
+  type        = string
+  default     = null
+  description = "schedule.yaml passed to helm. This override the default toleration setup."
 }
 
 variable "aws_cloudwatch_metrics_containerd_sock_path" {

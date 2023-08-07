@@ -12,4 +12,6 @@ locals {
     READ_FROM_TAIL = var.read_from_head ? "Off" : "On"
   }
   values = var.values_yaml == null ? templatefile("${path.module}/values.yaml", local.configs) : var.values_yaml
+
+  schedule = var.schedule_yaml == null ? file("${path.module}/schedule.yaml") : var.schedule_yaml
 }

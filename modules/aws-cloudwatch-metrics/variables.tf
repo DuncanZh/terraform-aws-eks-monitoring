@@ -50,6 +50,18 @@ variable "iam_role_name" {
   description = "Role name or role name prefix."
 }
 
+variable "values_yaml" {
+  type        = string
+  default     = null
+  description = "values.yaml passed to helm. This override the default values."
+}
+
+variable "schedule_yaml" {
+  type        = string
+  default     = null
+  description = "schedule.yaml passed to helm. This override the default schedule setup."
+}
+
 variable "containerd_sock_path" {
   type        = string
   default     = "/run/dockershim.sock"

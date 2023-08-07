@@ -3,10 +3,11 @@ resource "helm_release" "fluent-bit" {
   repository = "https://fluent.github.io/helm-charts"
   chart      = "fluent-bit"
   version    = var.chart_version
-  namespace  = var.namespace
+  namespace  = kubernetes_namespace.namespace.metadata[0].name
 
   values = [
-    local.values
+    local.values,
+    local.schedule
   ]
 
   set {
@@ -23,8 +24,4 @@ resource "helm_release" "fluent-bit" {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = module.iam_role.iam_role_arn
   }
-
-  depends_on = [
-    kubernetes_namespace.namespace
-  ]
 }

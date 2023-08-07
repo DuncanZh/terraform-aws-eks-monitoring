@@ -3,7 +3,12 @@ resource "helm_release" "aws-cloudwatch-metrics" {
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-cloudwatch-metrics"
   version    = var.chart_version
-  namespace  = var.namespace
+  namespace  = kubernetes_namespace.namespace.metadata[0].name
+
+  values = [
+    local.values,
+    local.schedule
+  ]
 
   set {
     name  = "clusterName"
@@ -19,8 +24,4 @@ resource "helm_release" "aws-cloudwatch-metrics" {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = module.iam_role.iam_role_arn
   }
-
-  depends_on = [
-    kubernetes_namespace.namespace
-  ]
 }

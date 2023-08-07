@@ -53,7 +53,13 @@ variable "iam_role_name" {
 variable "values_yaml" {
   type        = string
   default     = null
-  description = "Custom values.yaml passed to helm. This override the default template."
+  description = "values.yaml passed to helm. This override the default values."
+}
+
+variable "schedule_yaml" {
+  type        = string
+  default     = null
+  description = "schedule.yaml passed to helm. This override the default toleration setup."
 }
 
 variable "read_from_head" {
