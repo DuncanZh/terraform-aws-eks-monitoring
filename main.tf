@@ -13,8 +13,11 @@ module "fluent-bit" {
   use_iam_role_name_prefix = var.fluent_bit_use_iam_role_name_prefix
   iam_role_name            = var.fluent_bit_iam_role_name
 
-  values_yaml    = var.fluent_bit_values_yaml
-  read_from_head = var.fluent_bit_read_from_head
+  values_yaml   = var.fluent_bit_values_yaml
+  schedule_yaml = var.fluent_bit_schedule_yaml
+
+  read_from_head     = var.fluent_bit_read_from_head
+  log_retention_days = var.fluent_bit_log_retention_days
 }
 
 module "aws-cloudwatch-metrics" {
@@ -31,6 +34,9 @@ module "aws-cloudwatch-metrics" {
   service_account_name     = var.aws_cloudwatch_metrics_service_account_name
   use_iam_role_name_prefix = var.aws_cloudwatch_metrics_use_iam_role_name_prefix
   iam_role_name            = var.aws_cloudwatch_metrics_iam_role_name
+
+  values_yaml   = var.aws_cloudwatch_metrics_values_yaml
+  schedule_yaml = var.aws_cloudwatch_metrics_schedule_yaml
 
   containerd_sock_path = var.aws_cloudwatch_metrics_containerd_sock_path
 }

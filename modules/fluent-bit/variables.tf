@@ -67,3 +67,9 @@ variable "read_from_head" {
   default     = false
   description = "Read logs generated before fluent bit is deployed."
 }
+
+variable "log_retention_days" {
+  type        = number
+  default     = 7
+  description = "Log retention days."
+}

@@ -85,6 +85,12 @@ variable "fluent_bit_read_from_head" {
   description = "Read logs generated before fluent bit is deployed."
 }
 
+variable "fluent_bit_log_retention_days" {
+  type        = number
+  default     = 7
+  description = "Log retention days."
+}
+
 # AWS Cloudwatch Metrics
 
 variable "aws_cloudwatch_metrics_release_name" {

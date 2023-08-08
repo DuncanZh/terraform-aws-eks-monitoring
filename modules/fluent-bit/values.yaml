@@ -13,6 +13,7 @@ config:
         storage.sync              normal
         storage.checksum          off
         storage.backlog.mem_limit 5M
+        log_retention_days        ${LOG_RETENTION_DAYS}
   inputs: |
     # application
     [INPUT]
